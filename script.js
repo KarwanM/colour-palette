@@ -146,30 +146,26 @@ const colorsElement = document.querySelectorAll(".colors");
 
 const resetColors = document.querySelector(".reset");
 
-resetColors.addEventListener("click", () => {
+const randomColor = () => {
   for (i = 0; i < colorsElement.length; i++) {
     const randomColor = Math.floor(Math.random() * 139);
+
     columnElement[i].style.backgroundColor = colorType[randomColor][0];
-    colorNameElement[i].innerHTML = colorType[randomColor][0];
+    colorNameElement[i].innerHTML =
+      colorType[randomColor][0][0].toUpperCase() +
+      colorType[randomColor][0].substring(1);
 
     colorType.map((color) => {
       const addOption = document.createElement("option");
-      addOption.innerHTML = color[0];
-      addOption.value = color[0];
+      addOption.innerHTML = color[0][0].toUpperCase() + color[0].substring(1);
+      addOption.value = color[0][0].toUpperCase() + color[0].substring(1);
       colorsElement[i].append(addOption);
     });
   }
+};
+
+resetColors.addEventListener("click", () => {
+  randomColor();
 });
 
-for (i = 0; i < colorsElement.length; i++) {
-  const randomColor = Math.floor(Math.random() * 139);
-  columnElement[i].style.backgroundColor = colorType[randomColor][0];
-  colorNameElement[i].innerHTML = colorType[randomColor][0];
-
-  colorType.map((color) => {
-    const addOption = document.createElement("option");
-    addOption.innerHTML = color[0];
-    addOption.value = color[0];
-    colorsElement[i].append(addOption);
-  });
-}
+randomColor();

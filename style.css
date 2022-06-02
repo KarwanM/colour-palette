@@ -38,7 +38,7 @@ main div {
 .color-name {
     display: block;
     padding: 2px 0;
-    margin-top: 25vw;
+    margin-top: 100%;
     text-align: center;
     background-color: white;
     border: 1px solid gray;
@@ -51,6 +51,7 @@ main div {
     background-color: white;
     border: 1px solid gray;
     border-radius: 5px;
+    text-align: center;
 }
 
 .reset{
