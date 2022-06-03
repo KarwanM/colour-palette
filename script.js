@@ -140,32 +140,50 @@ const colorType = [
   ["maroon", "#800000"],
 ];
 
-const columnElement = document.querySelectorAll(".column");
-const colorNameElement = document.querySelectorAll(".color-name");
-const colorsElement = document.querySelectorAll(".colors");
+const columns = document.querySelectorAll(".column");
+const colorName = document.querySelectorAll(".color-name");
+const colors = document.querySelectorAll(".colors");
 
 const resetColors = document.querySelector(".reset");
 
+let chooseColor = [];
+
 const randomColor = () => {
-  for (i = 0; i < colorsElement.length; i++) {
+  for (i = 0; i < colors.length; i++) {
     const randomColor = Math.floor(Math.random() * 139);
 
-    columnElement[i].style.backgroundColor = colorType[randomColor][0];
-    colorNameElement[i].innerHTML =
+    colors[i].id = i;
+    chooseColor.push(colors[i]);
+
+    colors[i].selectedIndex = 0
+
+    columns[i].style.backgroundColor = colorType[randomColor][0];
+
+    colorName[i].innerHTML =
       colorType[randomColor][0][0].toUpperCase() +
       colorType[randomColor][0].substring(1);
 
     colorType.map((color) => {
       const addOption = document.createElement("option");
       addOption.innerHTML = color[0][0].toUpperCase() + color[0].substring(1);
-      addOption.value = color[0][0].toUpperCase() + color[0].substring(1);
-      colorsElement[i].append(addOption);
+      addOption.value = color[0];
+      colors[i].append(addOption);
     });
   }
 };
 
+randomColor();
+
 resetColors.addEventListener("click", () => {
   randomColor();
+
 });
 
-randomColor();
+chooseColor.map((color) => {
+  color.addEventListener("change", () => {
+    columns[color.id].style.backgroundColor = color.value;
+
+    colorName[color.id].innerHTML =
+      color.value[0].toUpperCase() + color.value.substring(1);
+  });
+});
