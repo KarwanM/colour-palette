@@ -1,3 +1,3 @@
 # Colour-Palette
 
-https://karwanm.github.io/Colour-Palette/
+https://karwanm.github.io/colour-palette/
